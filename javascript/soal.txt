@@ -1,0 +1,277 @@
+//-- SOAL 1
+
+Tulis fungsi expect yang membantu pengembang menguji kode mereka. 
+Fungsi ini harus menerima nilai val dan mengembalikan objek dengan dua fungsi berikut.
+
+toBe(val) menerima nilai lain dan mengembalikan true jika kedua 
+nilai === satu sama lain. Jika tidak sama, akan muncul kesalahan "Tidak Sama".
+notToBe(val) menerima nilai lain dan mengembalikan true jika kedua 
+nilai !== satu sama lain. Jika sama, akan muncul kesalahan "Sama".
+
+
+Example 1:
+
+Input: func = () => expect(5).toBe(5)
+Output: {"value": true}
+Penjelasan: 5 === 5 jadi ekspresi ini mengembalikan nilai true.
+
+Example 2:
+Input: func = () => expect(5).toBe(null)
+Output: {"error": "Not Equal"}
+Penjelasan: 5 !== null jadi ekspresi ini memunculkan kesalahan "Tidak Sama".
+
+Example 3:
+Input: func = () => expect(5).notToBe(null)
+Output: {"value": true}
+Penjelasan: 5 !== null jadi ekspresi ini mengembalikan nilai true.
+
+
+// -- SOAL 2
+Diberikan sebuah objek atau larik obj, kembalikan objek kompak.
+
+Objek kompak sama dengan objek aslinya, kecuali kunci yang berisi nilai salah
+ dihapus. Operasi ini berlaku untuk objek tersebut dan semua objek bersarang.
+  Larik dianggap sebagai objek yang indeksnya adalah kunci. Suatu nilai dianggap
+   salah ketika Boolean(nilai) mengembalikan nilai salah.
+
+Anda dapat menganggap obj sebagai keluaran dari JSON.parse. Dengan kata lain,
+ itu adalah JSON yang valid.
+ Example 1:
+
+Input: obj = [null, 0, false, 1]
+Output: [1]
+Penjelasan: Semua nilai yang salah telah dihapus dari array.
+
+Example 2:
+Input: obj = {"a": null, "b": [false, 1]}
+Output: {"b": [1]}
+Penjelasan: obj["a"] dan obj["b"][0] memiliki nilai yang salah dan dihapus.
+
+Example 3:
+Input: obj = [null, 0, 5, [0], [false, 16]]
+Output: [5, [], [16]]
+Penjelasan: obj[0], obj[1], obj[3][0], dan obj[4][0] salah dan dihapus.
+
+Constraints:
+
+obj is a valid JSON object
+2 <= JSON.stringify(obj).length <= 106
+
+
+// -- SOAL 3
+Tulis fungsi createCounter. Fungsi ini harus menerima integer 
+awal init. Fungsi ini harus mengembalikan objek dengan tiga fungsi.
+
+Ketiga fungsi tersebut adalah:
+
+increment() meningkatkan nilai saat ini sebesar 1, lalu mengembalikannya.
+
+decrement() mengurangi nilai saat ini sebesar 1, lalu mengembalikannya.
+
+reset() menetapkan nilai saat ini ke init, lalu mengembalikannya.
+
+Example 1:
+
+Input: init = 5, calls = ["increment","reset","decrement"]
+Output: [6,5,4]
+Explanation:
+const counter = createCounter(5);
+counter.increment(); // 6
+counter.reset(); // 5
+counter.decrement(); // 4
+Example 2:
+
+Input: init = 0, calls = ["increment","increment","decrement","reset","reset"]
+Output: [1,2,1,0,0]
+Explanation:
+const counter = createCounter(0);
+counter.increment(); // 1
+counter.increment(); // 2
+counter.decrement(); // 1
+counter.reset(); // 0
+counter.reset(); // 0
+
+Constraints:
+
+-1000 <= init <= 1000
+0 <= calls.length <= 1000
+calls[i] is one of "increment", "decrement" and "reset"
+
+
+// -- SOAL 4
+2635. Terapkan Transformasi pada Setiap Elemen dalam Array
+Mudah
+ikon kunci premium
+Perusahaan
+Petunjuk
+Diberikan array integer arr dan fungsi pemetaan fn,
+ kembalikan array baru dengan transformasi yang diterapkan 
+ pada setiap elemen.
+
+Array yang dikembalikan harus dibuat sedemikian rupa sehingga 
+returnedArray[i] = fn(arr[i], i).
+
+Harap selesaikan masalah ini tanpa metode Array.map bawaan.
+
+Example 1:
+
+Input: arr = [1,2,3], fn = function plusone(n) { return n + 1; }
+Output: [2,3,4]
+Explanation:
+const newArray = map(arr, plusone); // [2,3,4]
+The function increases each value in the array by one. 
+
+Example 2:
+Input: arr = [1,2,3], fn = function plusI(n, i) { return n + i; }
+Output: [1,3,5]
+Explanation: The function increases each value by the index it resides in.
+
+Example 3:
+Input: arr = [10,20,30], fn = function constant() { return 42; }
+Output: [42,42,42]
+Explanation: The function always returns 42.
+
+Constraints:
+
+0 <= arr.length <= 1000
+-109 <= arr[i] <= 109
+fn returns an integer.
+
+// -- SOAL 5
+2634. Filter Elemen dari Array
+Mudah
+ikon kunci premium
+Perusahaan
+Petunjuk
+Diberikan array integer arr dan fungsi filter fn, kembalikan 
+array filteredArr yang telah difilter.
+
+Fungsi fn menerima satu atau dua argumen:
+
+arr[i] - angka dari arr
+i - indeks dari arr[i]
+filteredArr hanya boleh berisi elemen dari arr yang ekspresi 
+fn(arr[i], i)-nya bernilai benar. Nilai benar adalah nilai yang 
+Boolean(value)-nya bernilai benar.
+
+Harap selesaikan masalah ini tanpa metode Array.filter bawaan.
+
+Example 1:
+Input: arr = [0,10,20,30], fn = function greaterThan10(n) { return n > 10; }
+Output: [20,30]
+Explanation:
+const newArray = filter(arr, fn); // [20, 30]
+The function filters out values that are not greater than 10
+
+Example 2:
+Input: arr = [1,2,3], fn = function firstIndex(n, i) { return i === 0; }
+Output: [1]
+Explanation:
+fn can also accept the index of each element
+In this case, the function removes elements not at index 0
+
+Example 3: 
+Input: arr = [-2,-1,0,1,2], fn = function plusOne(n) { return n + 1 }
+Output: [-2,0,1,2]
+Explanation:
+Falsey values such as 0 should be filtered out
+
+// -- SOAL 6
+2626. Transformasi Array Reduce
+Mudah
+ikon kunci premium
+Perusahaan
+Petunjuk
+Diberikan sebuah array integer nums, sebuah fungsi reducer fn,
+ dan sebuah nilai awal init, kembalikan hasil akhir yang diperoleh 
+ dengan mengeksekusi fungsi fn pada setiap elemen array, secara berurutan,
+  dengan memasukkan nilai kembalian dari perhitungan pada elemen sebelumnya.
+
+Hasil ini dicapai melalui operasi berikut: val = fn(init, nums[0]), 
+val = fn(val, nums[1]), val = fn(val, nums[2]), ...
+ hingga setiap elemen dalam array telah diproses. 
+ Nilai akhir val kemudian dikembalikan.
+
+Jika panjang array adalah 0, fungsi tersebut harus mengembalikan init.
+
+Harap selesaikan masalah ini tanpa menggunakan metode bawaan Array.reduce.
+
+Example 1:
+Input: 
+nums = [1,2,3,4]
+fn = function sum(accum, curr) { return accum + curr; }
+init = 0
+Output: 10
+Explanation:
+initially, the value is init=0.
+(0) + nums[0] = 1
+(1) + nums[1] = 3
+(3) + nums[2] = 6
+(6) + nums[3] = 10
+The final answer is 10.
+
+Example 2:
+Input: 
+nums = [1,2,3,4]
+fn = function sum(accum, curr) { return accum + curr * curr; }
+init = 100
+Output: 130
+Explanation:
+initially, the value is init=100.
+(100) + nums[0] * nums[0] = 101
+(101) + nums[1] * nums[1] = 105
+(105) + nums[2] * nums[2] = 114
+(114) + nums[3] * nums[3] = 130
+The final answer is 130.
+
+Example 3:
+Input: 
+nums = []
+fn = function sum(accum, curr) { return 0; }
+init = 25
+Output: 25
+Explanation: For empty arrays, the answer is always init.
+
+
+// -- SOAL 7
+2629. Komposisi Fungsi
+Mudah
+ikon kunci premium
+Perusahaan
+Petunjuk
+Diberikan array fungsi [f1, f2, f3, ..., fn], kembalikan 
+fungsi baru fn yang merupakan komposisi fungsi dari array fungsi tersebut.
+
+Komposisi fungsi dari [f(x), g(x), h(x)] adalah fn(x) = f(g(h(x))).
+
+Komposisi fungsi dari daftar fungsi yang kosong adalah fungsi 
+identitas f(x) = x.
+
+Anda dapat mengasumsikan setiap fungsi dalam array menerima 
+satu bilangan bulat sebagai masukan dan mengembalikan satu 
+bilangan bulat sebagai keluaran.
+
+Example 1:
+Input: functions = [x => x + 1, x => x * x, x => 2 * x], x = 4
+Output: 65
+Explanation:
+Evaluating from right to left ...
+Starting with x = 4.
+2 * (4) = 8
+(8) * (8) = 64
+(64) + 1 = 65
+
+Example 2:
+Input: functions = [x => 10 * x, x => 10 * x, x => 10 * x], x = 1
+Output: 1000
+Explanation:
+Evaluating from right to left ...
+10 * (1) = 10
+10 * (10) = 100
+10 * (100) = 1000
+
+Example 3:
+Input: functions = [], x = 42
+Output: 42
+Explanation:
+The composition of zero functions is the identity function
